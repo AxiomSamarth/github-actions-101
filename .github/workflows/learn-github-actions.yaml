@@ -1,0 +1,13 @@
+name: employ-env-variable
+on: push
+jobs:
+  employ-env-variable:
+    runs-on: ubuntu-latest
+    env: 
+      USER: "Teddy Winters"
+    steps:
+      - name: checkout branch
+        uses: actions/checkout@v2
+      - name: employ-env-variable
+        run: ./.github/scripts/print.sh
+        shell: bash
