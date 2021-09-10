@@ -5,9 +5,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: generate log file
-        run: echo "This is a log file uploaded as an artifact." > output.log
+        run: |
+          echo "This is a log file uploaded as an artifact." > output-first.log
+          echo "This is a second log file uploaded as an artifact." > output-second.log
       - name: upload-log-file
         uses: actions/upload-artifact@v2
         with:
           name: my-artifact
-          path: output.log
+          path: |
+            output-first.log.log
+            output-second.log
