@@ -1,13 +1,13 @@
-name: employ-env-variable
+name: upload-log-file
 on: push
 jobs:
-  employ-env-variable:
+  upload-log-file:
     runs-on: ubuntu-latest
-    env: 
-      USER: "Teddy Winters"
     steps:
-      - name: checkout branch
-        uses: actions/checkout@v2
-      - name: employ-env-variable
-        run: ./.github/scripts/print.sh
-        shell: bash
+      - name: generate log file
+        run: echo "This is a log file uploaded as an artifact." > output.log
+      - name: upload-log-file
+        uses: actions/upload-artifact@v2
+        with:
+          name: my-artifact
+          path: output.log
