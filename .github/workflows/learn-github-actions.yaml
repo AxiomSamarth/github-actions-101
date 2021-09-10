@@ -13,5 +13,5 @@ jobs:
         with:
           name: my-artifact
           path: |
-            output-first.log.log
+            output-first.log
             output-second.log
