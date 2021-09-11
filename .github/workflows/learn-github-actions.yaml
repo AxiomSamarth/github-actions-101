@@ -4,11 +4,15 @@ jobs:
   upload-log-file:
     runs-on: ubuntu-latest
     steps:
-      - name: generate log file
+      - name: generate log files
         run: |
-          echo "this is the log file of failed test script" > output.log
+          echo "This is log one file" > output-1.log
+          echo "This is log two file" > output-2.log
       - name: upload log file as artifact
         uses: actions/upload-artifact@v2
         with:
-          path: output.log # the name of the artifact will be defaulted to 'artifact'
-          if-no-files-found: error # 'ignore' label can also be used
+          path: output-1.log 
+      - name: upload log file as artifact
+        uses: actions/upload-artifact@v2
+        with:
+          path: output-2.log 
