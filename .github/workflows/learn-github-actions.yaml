@@ -6,8 +6,8 @@ jobs:
     steps:
       - name: generate log file
         run: |
-          cat sample.log
           echo "log file to be uploaded to artifact" > output.log
+          cat sample.log
       - name: upload log file as artifact
         uses: actions/upload-artifact@v2
         if: failure()
