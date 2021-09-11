@@ -9,3 +9,4 @@ jobs:
         with:
           name: my-artifact
           path: output-first.log
+          if-no-files-found: error # 'ignore' label can also be used
