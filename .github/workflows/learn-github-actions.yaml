@@ -7,7 +7,6 @@ jobs:
       - name: generate log file
         run: |
           echo "this is the log file of failed test script" > output.log
-          cat sample.txt
       - name: upload log file as artifact
         uses: actions/upload-artifact@v2
         if: failure()
