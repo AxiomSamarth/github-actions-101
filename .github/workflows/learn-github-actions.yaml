@@ -9,8 +9,6 @@ jobs:
           echo "this is the log file of failed test script" > output.log
       - name: upload log file as artifact
         uses: actions/upload-artifact@v2
-        if: failure()
         with:
-          name: my-artifact
-          path: output.log
+          path: output.log # the name of the artifact will be defaulted to 'artifact'
           if-no-files-found: error # 'ignore' label can also be used
