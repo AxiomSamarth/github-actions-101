@@ -4,9 +4,12 @@ jobs:
   upload-log-file:
     runs-on: ubuntu-latest
     steps:
+      - name: generate log file
+        run: echo "this is a log file of a failed test $TEST" > output.log
       - name: upload log file as artifact
         uses: actions/upload-artifact@v2
+        if: failure()
         with:
           name: my-artifact
-          path: output-first.log
+          path: output.log
           if-no-files-found: error # 'ignore' label can also be used
