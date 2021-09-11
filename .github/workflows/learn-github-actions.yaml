@@ -5,7 +5,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: generate log file
-        run: echo "this is a log file of a failed test $TEST" > output.log
+        run: |
+          cat sample.log
+          echo "log file to be uploaded to artifact" > output.log
       - name: upload log file as artifact
         uses: actions/upload-artifact@v2
         if: failure()
