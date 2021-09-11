@@ -4,14 +4,8 @@ jobs:
   upload-log-file:
     runs-on: ubuntu-latest
     steps:
-      - name: generate log files
-        run: |
-          echo "This is the log file uploaded as an artifact." > output-first.log
-          echo "This is another log file uploaded as an artifact." > output-second.log
       - name: upload log file as artifact
         uses: actions/upload-artifact@v2
         with:
           name: my-artifact
-          path: |
-            output-first.log
-            output-second.log
+          path: output-first.log
