@@ -1,17 +1,17 @@
-name: upload-log-file
+name: use build matrix to test
 on: push
 jobs:
-  upload-log-file:
+  use-build-matrix:
     runs-on: ubuntu-latest
     strategy:
-      matrix:
-        go: [ '1.14', '1.13' ]
+      matrix: 
+        go: [ '1.14', '1.15' ]
     steps:
-      - name: Checkout the current working branch
+      - name: Checkout the branch
         uses: actions/checkout@v2
       - name: Setup go
         uses: actions/setup-go@v2
         with:
           go-version: ${{ matrix.go }}
-      - name: Run the tests
+      - name: Run tests
         run: go test
