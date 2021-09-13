@@ -14,5 +14,9 @@ jobs:
     needs: run-test
     runs-on: ubuntu-latest
     steps:
+      - name: checkout working branch
+        uses: actions/checkout@v2
+      - name: Setup go
+        uses: actions/setup-go@v2
       - name: build the binary
         run: go build main.go
