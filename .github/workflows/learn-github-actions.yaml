@@ -1,17 +1,20 @@
-name: use build matrix to test
+name: define dependent jobs
 on: push
 jobs:
-  use-build-matrix:
+  checkout:
     runs-on: ubuntu-latest
-    strategy:
-      matrix: 
-        go: [ '1.14', '1.15' ]
     steps:
-      - name: Checkout the branch
+      - name: checkout working branch
         uses: actions/checkout@v2
-      - name: Setup go
-        uses: actions/setup-go@v2
-        with:
-          go-version: ${{ matrix.go }}
-      - name: Run tests
+  run-test:
+    needs: checkout
+    runs-on: ubuntu-latest
+    steps:
+      - name: run-test
         run: go test
+  create-bin:
+    needs: run-test
+    runs-on: ubuntu-latest
+    steps:
+      - name: build the binary
+        run: go build main.go
