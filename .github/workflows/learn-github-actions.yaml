@@ -6,6 +6,8 @@ jobs:
     steps:
       - name: checkout working branch
         uses: actions/checkout@v2
+      - name: Setup go
+        uses: actions/setup-go@v2
       - name: run-test
         run: go test
   create-bin:
