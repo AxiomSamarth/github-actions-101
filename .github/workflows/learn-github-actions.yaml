@@ -1,15 +1,11 @@
 name: define dependent jobs
 on: push
 jobs:
-  checkout:
+  run-test:
     runs-on: ubuntu-latest
     steps:
       - name: checkout working branch
         uses: actions/checkout@v2
-  run-test:
-    needs: checkout
-    runs-on: ubuntu-latest
-    steps:
       - name: run-test
         run: go test
   create-bin:
