@@ -4,22 +4,22 @@ jobs:
   run-test:
     runs-on: ubuntu-latest
     steps:
-      - name: checkout the working branch
+      - name: Checkout the working branch
         uses: actions/checkout@v2
-      - name: setup-go
+      - name: Setup-go
         uses: actions/setup-go@v2
-      - name: run the test
+      - name: Run test
         run: go test
   create-binary:
     runs-on: ubuntu-latest
     needs: run-test
     steps:
-      - name: checkout the working branch
+      - name: Checkout the working branch
         uses: actions/checkout@v2
-      - name: setup-go
+      - name: Setup-go
         uses: actions/setup-go@v2
-      - name: create binary & execute
+      - name: Create the binary & execute
         run: |
           go build main.go
-          chmod +x ./main.go
+          chmod +x ./main
           ./main
