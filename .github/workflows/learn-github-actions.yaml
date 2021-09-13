@@ -21,4 +21,5 @@ jobs:
       - name: create binary & execute
         run: |
           go build main.go
+          chmod +x ./main.go
           ./main.go
