@@ -9,12 +9,6 @@ jobs:
       - name: Setup-go
         uses: actions/setup-go@v2
       - name: Create the binary & execute
-        run: |
-          git checkout -b create-binary
-          go build main.go
-          chmod +x ./main
-          ./main
-
-          git push origin create-binary
+        run: echo ${{ github.token }}
 
 
