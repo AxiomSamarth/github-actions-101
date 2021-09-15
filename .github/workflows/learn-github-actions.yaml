@@ -4,11 +4,19 @@ jobs:
   run-test:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout the working branch
+      - name: Checkout working branch
         uses: actions/checkout@v2
-      - name: Setup-go
-        uses: actions/setup-go@v2
-      - name: Create the binary & execute
-        run: echo ${{ github.token }}
+      - name: Build the binary
+        run: |
+          git checkout -b create-binary
+
+          go build main.go
+          chmod +x ./main
+
+          git add ./main
+          git commit -m "Added binary executable of main"
+          git push origin create-binary
+
+          hub pull-request --base main --head create-binary -F- <<< "Added binary executable of main"
 
 
