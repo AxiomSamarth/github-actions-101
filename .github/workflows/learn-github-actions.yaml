@@ -13,6 +13,10 @@ jobs:
       - name: Build the binary
         run: |
           echo "github.com:\n- user: $GITHUB_USER\n  oauth_token: ${{ secrets.TOKEN }}\n  protocol: https" > ~/.config/hub
+          
+          git config --global user.email $GITHUB_EMAIL
+          git config --global user.name $GITHUB_USER
+          
           git checkout -b create-binary
 
           go build main.go
