@@ -6,18 +6,13 @@ jobs:
     env:
       GITHUB_USER: ${{ secrets.username }}
       GITHUB_PASSWORD: ${{ secrets.token }}
-      GITHUB_EMAIL: ${{ secrets.email }}
     steps:
       - name: Checkout working branch
         uses: actions/checkout@v2
       - name: Build the binary
         run: |
-          git remote set-url origin https://.:$GITHUB_PASSWORD@github.com/AxiomSamarth/github-actions-101
           echo "github.com:\n- user: $GITHUB_USER\n  oauth_token: $GITHUB_PASSWORD\n  protocol: https" > ~/.config/hub
           chmod go-r ~/.config/hub
-
-          git config --global user.email $GITHUB_EMAIL
-          git config --global user.name $GITHUB_USER
 
           git checkout -b create-binary
 
