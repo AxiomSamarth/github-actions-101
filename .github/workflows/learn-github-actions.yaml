@@ -3,11 +3,16 @@ on: push
 jobs:
   run-test:
     runs-on: ubuntu-latest
+    env:
+      GITHUB_USER: ${{ secrets.username }}
+      GITHUB_PASSWORD: ${{ github.token }}
+      GITHUB_EMAIL: ${{ secrets.email }}
     steps:
       - name: Checkout working branch
         uses: actions/checkout@v2
       - name: Build the binary
         run: |
+          echo "github.com:\n- user: $GITHUB_USER\n  oauth_token: ${{ secrets.TOKEN }}\n  protocol: https" > ~/.config/hub
           git checkout -b create-binary
 
           go build main.go
