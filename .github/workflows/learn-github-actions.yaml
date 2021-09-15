@@ -12,7 +12,7 @@ jobs:
         uses: actions/checkout@v2
       - name: Build the binary
         run: |
-          echo "github.com:\n- user: $GITHUB_USER\n  oauth_token: ${{ GITHUB_PASSWORD }}\n  protocol: https" > ~/.config/hub
+          echo "github.com:\n- user: $GITHUB_USER\n  oauth_token: $GITHUB_PASSWORD\n  protocol: https" > ~/.config/hub
           
           git config --global user.email $GITHUB_EMAIL
           git config --global user.name $GITHUB_USER
