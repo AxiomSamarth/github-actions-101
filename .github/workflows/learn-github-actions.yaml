@@ -27,4 +27,4 @@ jobs:
           git commit -m "added binary executable of main.go"
           git push origin create-binary
 
-          hub pull-request --base main --head create-binary -F- <<< "Added binary executable of main.go"
+          hub pull-request --base main --head create-binary -F- <<< "Added the binary executable of main.go"
