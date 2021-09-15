@@ -20,7 +20,6 @@ jobs:
           git config --global user.name $GITHUB_USER
 
           git checkout -b create-binary
-          git pull origin create-binary
 
           go build main.go
           chmod +x ./main
