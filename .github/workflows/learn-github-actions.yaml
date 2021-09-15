@@ -4,29 +4,27 @@ jobs:
   run-test:
     runs-on: ubuntu-latest
     env:
-      GITHUB_USERNAME: ${{ secrets.username }}
+      GITHUB_USER: ${{ secrets.username }}
       GITHUB_PASSWORD: ${{ secrets.token }}
       GITHUB_EMAIL: ${{ secrets.email }}
     steps:
-      - name: Checkout working branch
+      - name: Checkout the working branch
         uses: actions/checkout@v2
-      - name: setup git on runner
+      - name: configure git on runner
         run: |
           echo "github.com:\n- user: $GITHUB_USER\n  oauth_token: $GITHUB_PASSWORD\n  protocol: https" > ~/.config/hub
           git config --global user.email $GITHUB_EMAIL
-          git config --global user.name $GITHUB_USERNAME
-      - name: Build the binary & push it to remote to raise a PR
+          git config --global user.name $GITHUB_USER
+      - name: Build the executable in a new branch & raise a PR
         run: |
+          echo "Username is $GITHUB_USER"
           git checkout -b create-binary
 
           go build main.go
           chmod +x ./main
 
           git add ./main
-          git commit -m "added executable binary"
+          git commit -m "added binary executable of main.go"
           git push origin create-binary
 
-          hub pull-request --base main --head create-binary -F- <<< "added executable binary" 
-
-
-
+          hub pull-request --base main --head create-binary -F- <<< "Added binary executable of main.go""
