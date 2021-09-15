@@ -1,28 +1,32 @@
-name: define dependent jobs
+name: use github secrets
 on: push
 jobs:
   run-test:
     runs-on: ubuntu-latest
-    env:
+    env: 
       GITHUB_USER: ${{ secrets.username }}
       GITHUB_PASSWORD: ${{ secrets.token }}
+      GITHUB_EMAIL: ${{ secrets.email }}
     steps:
-      - name: Checkout working branch
+      - name: checkout working branch
         uses: actions/checkout@v2
-      - name: Build the binary
+      - name: setup github
         run: |
           echo "github.com:\n- user: $GITHUB_USER\n  oauth_token: $GITHUB_PASSWORD\n  protocol: https" > ~/.config/hub
-          chmod go-r ~/.config/hub
-
+          git config --global user.email $GITHUB_EMAIL
+          git config --global user.name $GITHUB_USER
+      - name: create a new branch and build the binary and raise PR
+        run: |
           git checkout -b create-binary
 
           go build main.go
           chmod +x ./main
 
           git add ./main
-          git commit -m "Added binary executable of main"
-          git push origin create-binary
+          git commit -m "Added executable binary of main.go"
+          git push origin main
 
-          hub pull-request --base main --head create-binary -F- <<< "Added binary executable of main"
+          hub pull-request --base main --head create-binary -F- <<< "Added executable binary of main.go"
+
 
 
