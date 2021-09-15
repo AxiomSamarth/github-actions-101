@@ -5,7 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       GITHUB_USER: ${{ secrets.username }}
-      GITHUB_PASSWORD: ${{ github.token }}
+      GITHUB_PASSWORD: ${{ secrets.token }}
       GITHUB_EMAIL: ${{ secrets.email }}
     steps:
       - name: Checkout working branch
