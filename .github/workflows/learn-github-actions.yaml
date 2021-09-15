@@ -15,11 +15,12 @@ jobs:
           git remote set-url origin https://.:$GITHUB_PASSWORD@github.com/AxiomSamarth/github-actions-101
           echo "github.com:\n- user: $GITHUB_USER\n  oauth_token: $GITHUB_PASSWORD\n  protocol: https" > ~/.config/hub
           chmod go-r ~/.config/hub
-          
+
           git config --global user.email $GITHUB_EMAIL
           git config --global user.name $GITHUB_USER
 
           git checkout -b create-binary
+          git pull origin create-binary
 
           go build main.go
           chmod +x ./main
